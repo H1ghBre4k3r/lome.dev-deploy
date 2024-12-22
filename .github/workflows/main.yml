@@ -5,11 +5,14 @@ on:
     types: lome-dev-deploy-trigger
 
 jobs:
-  build:
+  update-image:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     steps:
       - name: Check Out The Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set lower case owner name
         run: |
           echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
@@ -20,7 +23,7 @@ jobs:
         run: |
           sed -i "s@\(.*image:\).*@\1 ghcr.io/${{ env.OWNER_LC }}/lome-dev:${{ github.event.client_payload.sha }}@" ${GITHUB_WORKSPACE}/manifests/deployment.yml
       - name: Commit The New Image Reference
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         if: ${{ github.event.client_payload.sha }}
         with:
           commit_message: Deploy new image ${{ github.event.client_payload.sha }}
