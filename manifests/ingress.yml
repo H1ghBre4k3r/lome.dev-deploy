@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`lome-dev.de`)
+    - match: Host(`lome.dev`)
       kind: Rule
       services:
         - name: lome-dev-service
