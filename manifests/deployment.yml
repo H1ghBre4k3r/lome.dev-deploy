@@ -17,7 +17,7 @@ spec:
         io.kompose.service: lome-dev-deployment
     spec:
       containers:
-        - image: ghcr.io/h1ghbre4k3r/lome-dev:9070318e1a1f95282d1a326659592ef6612fd5db
+        - image: ghcr.io/h1ghbre4k3r/lome-dev:cc94c3dd7ebb6d8cc0b5dda9a162f3d90c198326
           imagePullPolicy: Always
           name: lome-dev-deployment
           ports:
